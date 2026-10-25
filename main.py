@@ -15,44 +15,83 @@ CS1430_MEETINGS_PER_SEMESTER = 45
 
 # ---- FUNCTIONS: replace each return 0 ----
 
+#Option 1
 def cost_per_semester(annual_cost):
     """Give back what one semester costs."""
-    return 0
+    return annual_cost / SEMESTERS_PER_YEAR
 
-
+#Option 2
 def cost_per_month(annual_cost):
     """Give back what one month of the academic year costs."""
-    return 0
+    return annual_cost / MONTHS_PER_YEAR
 
-
+#Option 3
 def cost_per_day(annual_cost):
     """Give back what one class day costs."""
-    return 0
+    return annual_cost / (SEMESTERS_PER_YEAR * CLASS_DAYS_PER_SEMESTER)
 
-
+#Option 4
 def cost_per_credit(annual_cost, credits):
     """Give back what one credit costs. credits is the number taken this semester."""
-    return 0
+    semester_cost = cost_per_semester(annual_cost)
+    return semester_cost / credits
 
-
+#Option 5
 def cost_per_class(annual_cost, credits):
     """Give back what one 50-minute CS 1430 class meeting costs."""
-    return 0
+    credit_cost = cost_per_credit(annual_cost, credits)
+    semester_cost = credit_cost * CS1430_CREDITS
+    return semester_cost / CS1430_MEETINGS_PER_SEMESTER
+
+#Option 6
+def cost_per_minute(annual_cost, credits):
+    """Calculate the cost per minute."""
+    return cost_per_class(annual_cost, credits) / 50
+
 
 
 # ---- PROGRAM ----
 
 def main():
-    # Ask for the total cost for one year here.
-    # Then ask for the credits this semester.
+    annual_cost = float(input("Enter the annual cost of college:"))
+    credits = int(input("Credits this semester: "))
 
     while True:
-        # Show your menu here.
+        print("\nTHE COST OF COLLEGE")
+        print("1. Cost per semester")
+        print("2. Cost per month")
+        print("3. Cost per day")
+        print("4. Cost per credit")
+        print("5. Cost per class")
+        print("6. Cost per minute")
+        print("Q. Quit")
 
         choice = input("Choose an option: ")
 
-        if choice == "Q":
+        
+        if choice == "1":
+            amount = cost_per_semester(annual_cost)
+            print(f"Cost per semester: ${amount:.2f}")
+        elif choice == "2":
+            amount = cost_per_month(annual_cost)
+            print(f"Cost per month: ${amount:.2f}")
+        elif choice == "3":
+            amount = cost_per_day(annual_cost)
+            print(f"Cost per day: ${amount:.2f}")
+        elif choice == "4":
+            amount = cost_per_credit(annual_cost, credits)
+            print(f"Cost per credit: ${amount:.2f}")
+        elif choice == "5":
+            amount = cost_per_class(annual_cost, credits)
+            print(f"Cost per class: ${amount:.2f}")
+        elif choice == "6":
+            amount = cost_per_minute(annual_cost, credits)
+            print(f"Cost per minute: ${amount:.2f}")
+        elif choice == "Q":
+            print("Thanks for running the numbers!")
             break
+        else:
+            print("Invalid option. Please try again.")
 
         # Add a branch for each menu option here.
 
