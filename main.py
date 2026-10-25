@@ -46,7 +46,11 @@ def cost_per_class(annual_cost, credits):
 #Option 6
 def cost_per_minute(annual_cost, credits):
     """Calculate the cost per minute."""
-    return cost_per_class(annual_cost, credits) / 50
+    credit_cost = cost_per_credit(annual_cost, credits)
+    class_credits = float(input("How many credits is this class? "))
+    semester_cost = credit_cost * class_credits
+    class_length = float(input("For how many minutes a week is this class? "))
+    return semester_cost / (class_length * 15)  # Assuming 15 weeks in a semester
 
 
 
